@@ -8,5 +8,6 @@ public class InvoiceLine {
     String description;
     BigDecimal quantity;
     BigDecimal unitPrice;
+    BigDecimal vat;
     BigDecimal total;
 }

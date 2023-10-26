@@ -18,7 +18,6 @@ import java.util.Map;
 @Slf4j
 public class ExcelInvoiceExtractor implements InvoiceExctractor {
     private static String SHEET_INVOICE = "Invoices";
-    private static String SHEET_EMITER = "Emiter";
     private static int COL_NUMBER = 0;
     private static int COL_RECIPIENT = 1;
     private static int COL_EMAIL = 2;
@@ -27,9 +26,6 @@ public class ExcelInvoiceExtractor implements InvoiceExctractor {
     private static int COL_UNIT_PRICE = 5;
     private static int COL_VAT = 6;
     private static int COL_SENT = 7;
-    private static int ROW_NAME = 0;
-    private static int ROW_ADDRESS = 1;
-    private static int ROW_EMAIL = 2;
 
     @Override
     public List<Invoice> extractInvoices(InputStream source) throws ExtractionException {
@@ -67,6 +63,7 @@ public class ExcelInvoiceExtractor implements InvoiceExctractor {
                             new InvoiceLine()
                                     .setDescription(getString(row, COL_DESCRIPTION))
                                     .setUnitPrice(getNumber(row, COL_UNIT_PRICE))
+                                    .setVat(getNumber(row, COL_VAT))
                                     .setQuantity(getNumber(row, COL_QUANTITY))
                     );
                 }

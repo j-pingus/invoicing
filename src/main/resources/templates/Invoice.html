@@ -1,0 +1,85 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+</head>
+<style>
+    .date {
+        text-align: right;
+        padding: 10px;
+    }
+    .number {
+        text-align: right;
+    }
+    td {
+        margin: 5px;
+        padding: 5px;
+    }
+    tr:nth-child(odd).invoice-line {background: lightgray}
+    .invoice-header{
+        border: 2px solid red;
+        background-color: aliceblue;
+    }
+    .facture-id {
+        text-align: center;
+        padding: 10px;
+        font-weight: bolder;
+        font-size: larger;
+    }
+    .total{
+        text-align: right;
+        padding: 10px;
+        font-weight: bolder;
+        font-size: larger;
+
+    }
+
+    .full-width {
+        width: 100%;
+    }
+</style>
+<body>
+<p class="date">
+    Luxembourg, le
+    <span th:text="${date}">15 janvier 2000</span>
+</p>
+<table class="full-width">
+    <tr>
+        <td>Logo</td>
+        <td>
+            Aux parents de <span th:text="${invoice.recipient.name}">nom</span>
+            <p th:text="${invoice.recipient.adress}">adresse</p>
+            <p th:text="${invoice.recipient.email}">mail</p>
+        </td>
+    </tr>
+</table>
+<p class="facture-id">facture N°:<span th:text="${invoice.number}">XXXXX/YYYY-2023</span></p>
+<p>Introduction de la facture: aaaa</p>
+<table class="full-width">
+    <tr class="invoice-header">
+        <th>description</th>
+        <th>Quantité</th>
+        <th>Prix Unitaire</th>
+        <th>taux de TVA</th>
+        <th>Total</th>
+    </tr>
+    <tr class="invoice-line" th:each="line:${invoice.lines}">
+        <td th:text="${line.description}">description</td>
+        <td class="number" th:text="${line.quantity}">2</td>
+        <td class="number"><span th:text="${line.unitPrice}">25</span> €</td>
+        <td class="number"><span th:text="${line.vat}">17</span> %</td>
+        <td class="number"><span th:text="${line.total}">50</span> €</td>
+    </tr>
+</table>
+<p>Texte après la facture</p>
+<p class="total">Total à payer:<span>58,5</span>€</p>
+<p>Texte après la facture</p>
+<table class="full-width">
+    <tr>
+        <td>club</td>
+        <td>adresse du club</td>
+        <td>contactez nous <a href="mailto:email@du-club.lu">email@du-club.lu</td>
+        <td><a href="https://www.du-club.lu">www.du-club.lu</td>
+    </tr>
+</table>
+</body>
+</html>

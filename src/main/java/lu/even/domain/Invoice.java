@@ -9,7 +9,6 @@ import java.util.List;
 @Data
 public class Invoice {
     String number;
-    Contact emiter;
     Contact recipient;
     List<InvoiceLine> lines;
     BigDecimal total;
