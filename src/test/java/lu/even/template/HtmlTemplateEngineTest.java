@@ -4,8 +4,6 @@ import lu.even.InvoiceExamples;
 import org.apache.commons.io.FileUtils;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 import java.io.File;
 import java.io.IOException;
 
@@ -18,6 +16,7 @@ class HtmlTemplateEngineTest {
                 InvoiceExamples.getNotComputedWithSummary());
         FileUtils.writeStringToFile(new File("target/notComputed.html"), invoiceHtml, "UTF-8");
     }
+
     @Test
     void renderInvoiceNoVat() throws IOException {
         HtmlTemplateEngine engine = new HtmlTemplateEngine();

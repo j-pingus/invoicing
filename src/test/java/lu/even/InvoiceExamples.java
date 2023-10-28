@@ -6,8 +6,8 @@ import lu.even.domain.InvoiceLine;
 import java.math.BigDecimal;
 
 public class InvoiceExamples {
-    private static BigDecimal TWO = BigDecimal.valueOf(2);
-    private static BigDecimal BIG = BigDecimal.valueOf(12345);
+    private static final BigDecimal TWO = BigDecimal.valueOf(2);
+    private static final BigDecimal BIG = BigDecimal.valueOf(12345);
 
     public static Invoice getNotComputedNoVat() {
         return new Invoice()

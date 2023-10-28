@@ -4,11 +4,8 @@ import org.apache.commons.io.FileUtils;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
+ import java.io.FileOutputStream;
 import java.io.IOException;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class PdfProducerTest {
 

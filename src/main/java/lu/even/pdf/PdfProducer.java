@@ -5,8 +5,6 @@ import org.xhtmlrenderer.pdf.ITextRenderer;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
 import java.net.URL;
 
 public class PdfProducer {
@@ -16,7 +14,7 @@ public class PdfProducer {
             SharedContext sharedContext = renderer.getSharedContext();
             sharedContext.setPrint(true);
             sharedContext.setInteractive(false);
-            renderer.setDocumentFromString(html,baseUrl.toString());
+            renderer.setDocumentFromString(html, baseUrl.toString());
             renderer.layout();
             renderer.createPDF(outputStream);
             outputStream.flush();

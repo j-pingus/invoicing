@@ -17,7 +17,7 @@ import java.util.Map;
 
 @Slf4j
 public class HtmlTemplateEngine {
-    private TemplateEngine templateEngine;
+    private final TemplateEngine templateEngine;
 
     public HtmlTemplateEngine() {
         ClassLoaderTemplateResolver resolver = new ClassLoaderTemplateResolver();

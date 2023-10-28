@@ -26,7 +26,7 @@ public class Invoice {
     }
 
     public boolean hasSummary() {
-        return this.summary != null && this.summary.size() > 0;
+        return this.summary != null && !this.summary.isEmpty();
     }
     public VatSummary getVatSummary(BigDecimal vat){
         VatSummary vatSummary = this.summary.stream().filter(s->s.getVat().equals(vat))

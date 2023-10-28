@@ -1,7 +1,6 @@
 package lu.even.compute;
 
 import lu.even.domain.Invoice;
-import lu.even.domain.InvoiceLine;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -13,7 +12,7 @@ public class InvoiceComputer {
             if (invoiceLine.isValid()) {
                 BigDecimal quantity = invoiceLine.getQuantity();
                 if (isIntegerValue(quantity)) {
-                    invoiceLine.setQuantity(quantity.setScale(0));
+                    invoiceLine.setQuantity(quantity.setScale(0, RoundingMode.HALF_UP));
                 }
                 invoiceLine.setUnitPrice(
                         invoiceLine.getUnitPrice().setScale(2, RoundingMode.HALF_UP)
@@ -26,7 +25,7 @@ public class InvoiceComputer {
                 if (invoiceLine.getVat() != null) {
                     BigDecimal vat = invoiceLine.getVat();
                     if (isIntegerValue(vat)) {
-                        invoiceLine.setVat(vat.setScale(0));
+                        invoiceLine.setVat(vat.setScale(0, RoundingMode.HALF_UP));
                     }
                     BigDecimal vatAmount = total
                             .multiply(invoiceLine.getVat())

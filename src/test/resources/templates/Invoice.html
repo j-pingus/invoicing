@@ -1,5 +1,5 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
+      xmlns:th="http://www.thymeleaf.org" lang="fr">
 <head>
     <meta charset="UTF-8"/>
     <style>
@@ -64,11 +64,12 @@
             width: 100%;
         }
     </style>
+    <title th:text="${invoice.number}">Invoice</title>
 </head>
 <body>
 <table class="full-width">
     <tr>
-        <td><img src="logo.png" width="150" height="150"/></td>
+        <td><img src="logo.png" width="150" height="150" alt="logo"/></td>
         <td>
             <p class="date">
                 Luxembourg, le
@@ -97,7 +98,7 @@
         <td th:text="${line.description}">description</td>
         <td class="number" th:text="${line.quantity}">2</td>
         <td class="number"><span th:text="${line.unitPrice}">25</span>&#160;€</td>
-            <td class="number" th:if="${invoice.hasSummary}"><span th:text="${line.vat}">10</span>&#160;%</td>
+        <td class="number" th:if="${invoice.hasSummary}"><span th:text="${line.vat}">10</span>&#160;%</td>
         <td class="number"><span th:text="${line.total}">55</span>&#160;€</td>
         <td class="number" th:if="${invoice.hasSummary}"><span th:text="${line.totalInclVat}">55</span>&#160;€</td>
     </tr>

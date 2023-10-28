@@ -10,23 +10,26 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import java.io.IOException;
 import java.io.InputStream;
 import java.math.BigDecimal;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
-import static org.apache.poi.ss.usermodel.CellType.*;
+import static org.apache.poi.ss.usermodel.CellType.NUMERIC;
+import static org.apache.poi.ss.usermodel.CellType.STRING;
 
 @Slf4j
 public class ExcelInvoiceExtractor implements InvoiceExctractor {
     private static int COL = 0;
-    private static String SHEET_INVOICE = "Invoices";
-    private static int COL_NUMBER = COL++;
-    private static int COL_NAME = COL++;
-    private static int COL_RECIPIENT = COL++;
-    private static int COL_EMAIL = COL++;
-    private static int COL_DESCRIPTION = COL++;
-    private static int COL_QUANTITY = COL++;
-    private static int COL_UNIT_PRICE = COL++;
-    private static int COL_VAT = COL++;
-    private static int COL_SENT = COL++;
+    private static final String SHEET_INVOICE = "Invoices";
+    private static final int COL_NUMBER = COL++;
+    private static final int COL_NAME = COL++;
+    private static final int COL_RECIPIENT = COL++;
+    private static final int COL_EMAIL = COL++;
+    private static final int COL_DESCRIPTION = COL++;
+    private static final int COL_QUANTITY = COL++;
+    private static final int COL_UNIT_PRICE = COL++;
+    private static final int COL_VAT = COL++;
+    private static final int COL_SENT = COL++;
 
     @Override
     public List<Invoice> extractInvoices(InputStream source) throws ExtractionException {
@@ -69,18 +72,20 @@ public class ExcelInvoiceExtractor implements InvoiceExctractor {
         }
         return extracted;
     }
-    Optional<Cell> getCell(Row row, int cellId,CellType type){
+
+    Optional<Cell> getCell(Row row, int cellId, CellType type) {
         Cell cell = row.getCell(cellId);
-        if(cell==null)return Optional.empty();
-        if(cell.getCellType()!=type)return Optional.empty();
+        if (cell == null) return Optional.empty();
+        if (cell.getCellType() != type) return Optional.empty();
         return Optional.of(cell);
     }
+
     String getString(Row row, int cellId) {
-        return getCell(row,cellId,STRING).map(Cell::getStringCellValue).orElse(null);
+        return getCell(row, cellId, STRING).map(Cell::getStringCellValue).orElse(null);
     }
 
     BigDecimal getNumber(Row row, int cellId) {
-        return getCell(row,cellId,NUMERIC)
+        return getCell(row, cellId, NUMERIC)
                 .map(Cell::getNumericCellValue)
                 .map(BigDecimal::valueOf)
                 .orElse(null);
