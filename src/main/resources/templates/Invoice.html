@@ -7,25 +7,46 @@
         text-align: right;
         padding: 10px;
     }
+
     .number {
         text-align: right;
     }
+
     td {
         margin: 5px;
-        padding: 5px;
+        padding: 15px;
+        border-top: 1px solid lightgray;
+        border-bottom: 1px solid lightgray;
     }
-    tr:nth-child(odd).invoice-line {background: lightgray}
-    .invoice-header{
-        border: 2px solid red;
+
+    .invoice-table {
+        width: 85%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .invoice-header {
         background-color: aliceblue;
     }
+
+    th {
+        margin: 5px;
+        padding: 15px;
+
+    }
+
+    tr:nth-child(odd).invoice-line {
+        background: lightgray
+    }
+
     .facture-id {
         text-align: center;
         padding: 10px;
         font-weight: bolder;
         font-size: larger;
     }
-    .total{
+
+    .total {
         text-align: right;
         padding: 10px;
         font-weight: bolder;
@@ -44,7 +65,7 @@
 </p>
 <table class="full-width">
     <tr>
-        <td>Logo</td>
+        <td><img src="logo.png" width="150" height="150"/></td>
         <td>
             Aux parents de <span th:text="${invoice.recipient.name}">nom</span>
             <p th:text="${invoice.recipient.adress}">adresse</p>
@@ -54,7 +75,7 @@
 </table>
 <p class="facture-id">facture N°:<span th:text="${invoice.number}">XXXXX/YYYY-2023</span></p>
 <p>Introduction de la facture: aaaa</p>
-<table class="full-width">
+<table class="invoice-table">
     <tr class="invoice-header">
         <th>description</th>
         <th>Quantité</th>

@@ -17,27 +17,23 @@ import java.util.Map;
 
 @Slf4j
 public class ExcelInvoiceExtractor implements InvoiceExctractor {
+    private static int COL = 0;
     private static String SHEET_INVOICE = "Invoices";
-    private static int COL_NUMBER = 0;
-    private static int COL_RECIPIENT = 1;
-    private static int COL_EMAIL = 2;
-    private static int COL_DESCRIPTION = 3;
-    private static int COL_QUANTITY = 4;
-    private static int COL_UNIT_PRICE = 5;
-    private static int COL_VAT = 6;
-    private static int COL_SENT = 7;
+    private static int COL_NUMBER = COL++;
+    private static int COL_NAME = COL++;
+    private static int COL_RECIPIENT = COL++;
+    private static int COL_EMAIL = COL++;
+    private static int COL_DESCRIPTION = COL++;
+    private static int COL_QUANTITY = COL++;
+    private static int COL_UNIT_PRICE = COL++;
+    private static int COL_VAT = COL++;
+    private static int COL_SENT = COL++;
 
     @Override
     public List<Invoice> extractInvoices(InputStream source) throws ExtractionException {
         List<Invoice> extracted = new ArrayList<>();
         try {
             Workbook workbook = new XSSFWorkbook(source);
-            Sheet sheet1 = workbook.getSheet(SHEET_EMITER);
-            Contact emitter = new Contact()
-                    .setName(
-                            sheet1.getRow(ROW_NAME).getCell(1).getStringCellValue())
-                    .setAdress(sheet1.getRow(ROW_ADDRESS).getCell(1).getStringCellValue())
-                    .setEmail(sheet1.getRow(ROW_EMAIL).getCell(1).getStringCellValue());
             Sheet sheet = workbook.getSheet(SHEET_INVOICE);
             Invoice invoice = new Invoice();
             invoice.setNumber(null);
@@ -53,10 +49,10 @@ public class ExcelInvoiceExtractor implements InvoiceExctractor {
                         }
                         invoice
                                 .setRecipient(new Contact()
+                                        .setName(getString(row, COL_NAME))
                                         .setAdress(getString(row, COL_RECIPIENT))
                                         .setEmail(getString(row, COL_EMAIL))
-                                )
-                                .setEmiter(emitter);
+                                );
                     }
 
                     invoice.getLines().add(
