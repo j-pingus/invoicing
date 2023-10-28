@@ -14,13 +14,13 @@
 
         td {
             margin: 5px;
-            padding: 15px;
+            padding: 5px;
             border-top: 1px solid lightgray;
             border-bottom: 1px solid lightgray;
         }
 
         .invoice-table {
-            width: 85%;
+            width: 95%;
             margin-left: auto;
             margin-right: auto;
         }
@@ -89,18 +89,20 @@
         <th>description</th>
         <th>Quantité</th>
         <th>Prix Unitaire</th>
-        <th th:if="invoice.hasSummary">taux de TVA</th>
+        <th th:if="${invoice.hasSummary}">taux de TVA</th>
         <th>Total</th>
+        <th th:if="${invoice.hasSummary}">TTC</th>
     </tr>
     <tr class="invoice-line" th:each="line:${invoice.lines}">
         <td th:text="${line.description}">description</td>
         <td class="number" th:text="${line.quantity}">2</td>
-        <td class="number"><span th:text="${line.unitPrice}">25</span> €</td>
-        <td class="number" th:if="invoice.hasSummary"><span th:text="${line.vat}">10</span> %</td>
-        <td class="number"><span th:text="${line.total}">55</span> €</td>
+        <td class="number"><span th:text="${line.unitPrice}">25</span>&#160;€</td>
+            <td class="number" th:if="${invoice.hasSummary}"><span th:text="${line.vat}">10</span>&#160;%</td>
+        <td class="number"><span th:text="${line.total}">55</span>&#160;€</td>
+        <td class="number" th:if="${invoice.hasSummary}"><span th:text="${line.totalInclVat}">55</span>&#160;€</td>
     </tr>
 </table>
-<th:block th:if="invoice.hasSummary">
+<th:block th:if="${invoice.hasSummary}">
     <p>Résumé TVA</p>
     <table class="summary-table">
         <tr>
@@ -116,19 +118,19 @@
         </tr>
         <tr th:each="summary:${invoice.summary}">
             <td>
-                <span th:text="${summary.vat}">10</span> %
+                <span th:text="${summary.vat}">10</span>&#160;%
             </td>
             <td class="number">
-                <span th:text="${summary.amount}">50</span> €
+                <span th:text="${summary.amount}">50</span>&#160;€
             </td>
             <td class="number">
-                <span th:text="${summary.vatAmount}">5</span> €
+                <span th:text="${summary.vatAmount}">5</span>&#160;€
             </td>
         </tr>
     </table>
 </th:block>
 <p>Texte après la facture</p>
-<p class="total">Total à payer:<span>55</span> €</p>
+<p class="total">Total à payer:<span th:text="${invoice.total}">55</span>&#160;€</p>
 <p>Texte après le total</p>
 <table class="full-width">
     <tr>

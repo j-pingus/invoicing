@@ -11,11 +11,26 @@ public class InvoiceComputer {
         invoice.setTotal(BigDecimal.ZERO);
         invoice.getLines().forEach(invoiceLine -> {
             if (invoiceLine.isValid()) {
-
-                BigDecimal total = invoiceLine.getQuantity().multiply(invoiceLine.getUnitPrice());
+                BigDecimal quantity = invoiceLine.getQuantity();
+                if (isIntegerValue(quantity)) {
+                    invoiceLine.setQuantity(quantity.setScale(0));
+                }
+                invoiceLine.setUnitPrice(
+                        invoiceLine.getUnitPrice().setScale(2, RoundingMode.HALF_UP)
+                );
+                BigDecimal total = invoiceLine
+                        .getQuantity()
+                        .multiply(invoiceLine.getUnitPrice())
+                        .setScale(2, RoundingMode.HALF_UP);
                 invoiceLine.setTotal(total).setTotalInclVat(total);
                 if (invoiceLine.getVat() != null) {
-                    BigDecimal vatAmount = total.multiply(invoiceLine.getVat()).divide(BigDecimal.valueOf(100), 2, RoundingMode.HALF_UP);
+                    BigDecimal vat = invoiceLine.getVat();
+                    if (isIntegerValue(vat)) {
+                        invoiceLine.setVat(vat.setScale(0));
+                    }
+                    BigDecimal vatAmount = total
+                            .multiply(invoiceLine.getVat())
+                            .divide(BigDecimal.valueOf(100), 2, RoundingMode.HALF_UP);
                     invoiceLine.setVatAmount(vatAmount).setTotalInclVat(total.add(vatAmount));
                     invoice.getVatSummary(invoiceLine.getVat())
                             .addAmount(total)
@@ -25,5 +40,9 @@ public class InvoiceComputer {
             }
         });
         return invoice;
+    }
+
+    private static boolean isIntegerValue(BigDecimal bd) {
+        return bd.signum() == 0 || bd.scale() <= 0 || bd.stripTrailingZeros().scale() <= 0;
     }
 }

@@ -38,7 +38,7 @@ public class HtmlTemplateEngine {
             return "error occured processing template, see logs";
         }
     }
-    SimpleDateFormat dateFormat = new SimpleDateFormat("dd MMMMM yyyy");
+    SimpleDateFormat dateFormat = new SimpleDateFormat("dd MMMMM yyyy",Locale.FRENCH);
     public String renderInvoice(String template, Invoice invoice){
         Map<String,Object> variables = new HashMap<>();
         variables.put("date",dateFormat.format(new Date()));

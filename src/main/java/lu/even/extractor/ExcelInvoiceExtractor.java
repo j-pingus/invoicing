@@ -10,10 +10,9 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import java.io.IOException;
 import java.io.InputStream;
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+
+import static org.apache.poi.ss.usermodel.CellType.*;
 
 @Slf4j
 public class ExcelInvoiceExtractor implements InvoiceExctractor {
@@ -70,13 +69,20 @@ public class ExcelInvoiceExtractor implements InvoiceExctractor {
         }
         return extracted;
     }
-
+    Optional<Cell> getCell(Row row, int cellId,CellType type){
+        Cell cell = row.getCell(cellId);
+        if(cell==null)return Optional.empty();
+        if(cell.getCellType()!=type)return Optional.empty();
+        return Optional.of(cell);
+    }
     String getString(Row row, int cellId) {
-        return row.getCell(cellId).getStringCellValue();
+        return getCell(row,cellId,STRING).map(Cell::getStringCellValue).orElse(null);
     }
 
     BigDecimal getNumber(Row row, int cellId) {
-        double value = row.getCell(cellId).getNumericCellValue();
-        return BigDecimal.valueOf(value);
+        return getCell(row,cellId,NUMERIC)
+                .map(Cell::getNumericCellValue)
+                .map(BigDecimal::valueOf)
+                .orElse(null);
     }
 }
