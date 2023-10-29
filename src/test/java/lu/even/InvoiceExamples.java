@@ -9,7 +9,6 @@ public class InvoiceExamples {
     private static final BigDecimal TWO = BigDecimal.valueOf(2);
     private static final BigDecimal BIG = BigDecimal.valueOf(12345);
     public static File TEMPLATE_FOLDER = new File("src/test/resources/templates/");
-    public static String TEMPLATE_TYPE = "html";
     public static Invoice getNotComputedNoVat() {
         return new Invoice()
                 .addLines(

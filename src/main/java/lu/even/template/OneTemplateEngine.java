@@ -13,7 +13,7 @@ import java.util.*;
 public class OneTemplateEngine extends HtmlTemplateEngine {
     Properties invoiceProperties = null;
     SimpleDateFormat dateFormat = null;
-    String templateName = null;
+    String templateName;
     public OneTemplateEngine(File templateFolder,String templateName) {
         super(templateFolder, "html");
         this.templateName = templateName;
