@@ -1,5 +1,6 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org" lang="fr">
+      xmlns:th="http://www.thymeleaf.org" lang="fr"
+      th:attr="lang=${lang}">
 <head>
     <meta charset="UTF-8"/>
     <style>
@@ -10,6 +11,11 @@
 
         .number {
             text-align: right;
+        }
+
+        .signature {
+            text-align: right;
+            padding: 10px;
         }
 
         td {
@@ -69,10 +75,16 @@
 <body>
 <table class="full-width">
     <tr>
-        <td><img src="logo.png" width="150" height="150" alt="logo"/></td>
+        <td><img src="logo.png" width="150" height="150" alt="logo"
+                 th:attr="src=${logo},title=${logoTitle},alt=${logoAlt}"/></td>
+        <td>
+            <p th:utext="${senderName}">club</p>
+            <p th:utext="${senderAddress}">Adresse du club</p>
+        </td>
         <td>
             <p class="date">
-                Luxembourg, le
+
+                <span th:text="${dateIntro}">Luxembourg le, </span>
                 <span th:text="${date}">15 janvier 2000</span>
             </p>
             <th:block th:if="${invoice.recipient}">
@@ -83,62 +95,125 @@
         </td>
     </tr>
 </table>
-<p class="facture-id">facture N°:<span th:text="${invoice.number}">XXXXX/YYYY-2023</span></p>
-<p>Introduction de la facture: aaaa</p>
+<p class="facture-id">
+    <span th:text="${invoiceTitle}">facture N°:</span>
+    <span th:text="${invoice.number}">XXXXX/YYYY-2023</span>
+</p>
+<p th:if="${InvoiceIntroP1}" th:utext="${InvoiceIntroP1}">Introduction de la facture: aaaa</p>
+<p th:if="${InvoiceIntroP2}" th:utext="${InvoiceIntroP2}">Introduction de la facture: aaaa</p>
+<p th:if="${InvoiceIntroP3}" th:utext="${InvoiceIntroP3}">Introduction de la facture: aaaa</p>
+<p th:if="${InvoiceIntroP4}" th:utext="${InvoiceIntroP4}">Introduction de la facture: aaaa</p>
+<p th:if="${InvoiceIntroP5}" th:utext="${InvoiceIntroP5}">Introduction de la facture: aaaa</p>
+<p th:if="${InvoiceIntroP6}" th:utext="${InvoiceIntroP6}">Introduction de la facture: aaaa</p>
+<p th:if="${InvoiceIntroP7}" th:utext="${InvoiceIntroP7}">Introduction de la facture: aaaa</p>
+<p th:if="${InvoiceIntroP8}" th:utext="${InvoiceIntroP8}">Introduction de la facture: aaaa</p>
+<p th:if="${InvoiceIntroP9}" th:utext="${InvoiceIntroP9}">Introduction de la facture: aaaa</p>
+<p th:if="${InvoiceIntroP10}" th:utext="${InvoiceIntroP10}">Introduction de la facture: aaaa</p>
 <table class="invoice-table">
     <tr class="invoice-header">
-        <th>description</th>
-        <th>Quantité</th>
-        <th>Prix Unitaire</th>
-        <th th:if="${invoice.hasSummary}">taux de TVA</th>
-        <th>Total</th>
-        <th th:if="${invoice.hasSummary}">TTC</th>
+        <th th:utext="${invoiceDetailHeaderDescription}">description</th>
+        <th th:utext="${invoiceDetailHeaderQuantity}">Quantité</th>
+        <th th:utext="${invoiceDetailHeaderUnitPrice}">Prix Unitaire</th>
+        <th th:utext="${invoiceDetailHeaderVAT}" th:if="${invoice.hasSummary}">taux de TVA</th>
+        <th th:utext="${invoiceDetailHeaderTotal}">Total</th>
+        <th th:utext="${invoiceDetailHeaderTotalInclVAT}" th:if="${invoice.hasSummary}">TTC</th>
     </tr>
     <tr class="invoice-line" th:each="line:${invoice.lines}">
         <td th:text="${line.description}">description</td>
         <td class="number" th:text="${line.quantity}">2</td>
-        <td class="number"><span th:text="${line.unitPrice}">25</span>&#160;€</td>
-        <td class="number" th:if="${invoice.hasSummary}"><span th:text="${line.vat}">10</span>&#160;%</td>
-        <td class="number"><span th:text="${line.total}">55</span>&#160;€</td>
-        <td class="number" th:if="${invoice.hasSummary}"><span th:text="${line.totalInclVat}">55</span>&#160;€</td>
+        <td class="number">
+            <span th:text="${line.unitPrice}">25</span>
+            <span th:utext="${currency}">&#160;€</span>
+        </td>
+        <td class="number" th:if="${invoice.hasSummary}">
+            <span th:text="${line.vat}">10</span>
+            <span th:utext="${percent}">&#160;%</span>
+        </td>
+        <td class="number">
+            <span th:text="${line.total}">50</span>
+            <span th:utext="${currency}">&#160;€</span>
+        </td>
+        <td class="number" th:if="${invoice.hasSummary}">
+            <span th:text="${line.totalInclVat}">55</span>
+            <span th:utext="${currency}">&#160;€</span>
+        </td>
     </tr>
 </table>
 <th:block th:if="${invoice.hasSummary}">
-    <p>Résumé TVA</p>
+    <p th:if="${VatSummaryIntroP1}" th:utext="${VatSummaryIntroP1}">Résumé TVA</p>
+    <p th:if="${VatSummaryIntroP2}" th:utext="${VatSummaryIntroP2}"></p>
+    <p th:if="${VatSummaryIntroP3}" th:utext="${VatSummaryIntroP3}"></p>
+    <p th:if="${VatSummaryIntroP4}" th:utext="${VatSummaryIntroP4}"></p>
+    <p th:if="${VatSummaryIntroP5}" th:utext="${VatSummaryIntroP5}"></p>
+    <p th:if="${VatSummaryIntroP6}" th:utext="${VatSummaryIntroP6}"></p>
+    <p th:if="${VatSummaryIntroP7}" th:utext="${VatSummaryIntroP7}"></p>
+    <p th:if="${VatSummaryIntroP8}" th:utext="${VatSummaryIntroP8}"></p>
+    <p th:if="${VatSummaryIntroP9}" th:utext="${VatSummaryIntroP9}"></p>
+    <p th:if="${VatSummaryIntroP10}" th:utext="${VatSummaryIntroP10}"></p>
     <table class="summary-table">
         <tr>
-            <th>
-                taux de TVA
-            </th>
-            <th>
-                total HTVA
-            </th>
-            <th>
-                TVA
-            </th>
+            <th th:utext="${VATHeaderRate}">Taux</th>
+            <th th:utext="${VATHeaderTotal}">Total</th>
+            <th th:utext="${VATHeaderVAT}">TVA</th>
         </tr>
         <tr th:each="summary:${invoice.summary}">
             <td>
-                <span th:text="${summary.vat}">10</span>&#160;%
+                <span th:text="${summary.vat}">10</span>
+                <span th:utext="${percent}">&#160;%</span>
             </td>
             <td class="number">
-                <span th:text="${summary.amount}">50</span>&#160;€
+                <span th:text="${summary.amount}">50</span>
+                <span th:utext="${currency}">&#160;€</span>
             </td>
             <td class="number">
-                <span th:text="${summary.vatAmount}">5</span>&#160;€
+                <span th:text="${summary.vatAmount}">5</span>
+                <span th:utext="${currency}">&#160;€</span>
             </td>
         </tr>
     </table>
 </th:block>
-<p>Texte après la facture</p>
-<p class="total">Total à payer:<span th:text="${invoice.total}">55</span>&#160;€</p>
-<p>Texte après le total</p>
+<p th:if="${TotalIntroP1}" th:utext="${TotalIntroP1}">Texte avant le total à payer</p>
+<p th:if="${TotalIntroP2}" th:utext="${TotalIntroP2}"></p>
+<p th:if="${TotalIntroP3}" th:utext="${TotalIntroP3}"></p>
+<p th:if="${TotalIntroP4}" th:utext="${TotalIntroP4}"></p>
+<p th:if="${TotalIntroP5}" th:utext="${TotalIntroP5}"></p>
+<p th:if="${TotalIntroP6}" th:utext="${TotalIntroP6}"></p>
+<p th:if="${TotalIntroP7}" th:utext="${TotalIntroP7}"></p>
+<p th:if="${TotalIntroP8}" th:utext="${TotalIntroP8}"></p>
+<p th:if="${TotalIntroP9}" th:utext="${TotalIntroP9}"></p>
+<p th:if="${TotalIntroP10}" th:utext="${TotalIntroP10}"></p>
+<p class="total">
+    <span th:utext="${TotalIntroShort}">Total à payer:</span>
+    <span th:text="${invoice.total}">55</span>
+    <span th:utext="${currency}">&#160;€</span>
+</p>
+<p th:if="${InvoiceConclusionP1}" th:utext="${InvoiceConclusionP1}">Texte fin de facture</p>
+<p th:if="${InvoiceConclusionP2}" th:utext="${InvoiceConclusionP2}"></p>
+<p th:if="${InvoiceConclusionP3}" th:utext="${InvoiceConclusionP3}"></p>
+<p th:if="${InvoiceConclusionP4}" th:utext="${InvoiceConclusionP4}"></p>
+<p th:if="${InvoiceConclusionP5}" th:utext="${InvoiceConclusionP5}"></p>
+<p th:if="${InvoiceConclusionP6}" th:utext="${InvoiceConclusionP6}"></p>
+<p th:if="${InvoiceConclusionP7}" th:utext="${InvoiceConclusionP7}"></p>
+<p th:if="${InvoiceConclusionP8}" th:utext="${InvoiceConclusionP8}"></p>
+<p th:if="${InvoiceConclusionP9}" th:utext="${InvoiceConclusionP9}"></p>
+<p th:if="${InvoiceConclusionP10}" th:utext="${InvoiceConclusionP10}"></p>
+<p class="signature" th:if="${SignatureP1}" th:utext="${SignatureP1}">Signataire,</p>
+<p class="signature" th:if="${SignatureP2}" th:utext="${SignatureP2}">nom</p>
 <table class="full-width">
     <tr>
-        <td>club</td>
-        <td>adresse du club</td>
-        <td>contactez nous <a href="mailto:email@du-club.lu">email@du-club.lu</a></td>
-        <td><a href="https://www.du-club.lu">www.du-club.lu</a></td>
+        <td th:if="${senderName}">
+            <span th:utext="${senderName}">club</span>
+        </td>
+        <td th:if="${senderAddress}">
+            <span th:utext="${senderAddress}">1, Duerfstrooss L-9876 am Duerf</span>
+        </td>
+        <td th:if="${senderMail}">
+            <span th:utext="${senderMail}">contactez nous <a href="mailto:email@du-club.lu">email@du-club.lu</a></span>
+        </td>
+        <td th:if="${senderWebsite}">
+            <span th:utext="${senderWebsite}"><a
+                    href="https://www.du-club.lu">www.du-club.lu</a></span>
+        </td>
     </tr>
 </table>
 </body>

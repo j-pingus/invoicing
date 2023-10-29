@@ -11,7 +11,7 @@ class HtmlTemplateEngineTest {
 
     @Test
     void renderInvoice() throws IOException {
-        HtmlTemplateEngine engine = new HtmlTemplateEngine();
+        HtmlTemplateEngine engine = new HtmlTemplateEngine(InvoiceExamples.TEMPLATE_FOLDER, InvoiceExamples.TEMPLATE_TYPE);
         String invoiceHtml = engine.renderInvoice("Invoice",
                 InvoiceExamples.getNotComputedWithSummary());
         FileUtils.writeStringToFile(new File("target/notComputed.html"), invoiceHtml, "UTF-8");
@@ -19,7 +19,7 @@ class HtmlTemplateEngineTest {
 
     @Test
     void renderInvoiceNoVat() throws IOException {
-        HtmlTemplateEngine engine = new HtmlTemplateEngine();
+        HtmlTemplateEngine engine = new HtmlTemplateEngine(InvoiceExamples.TEMPLATE_FOLDER, InvoiceExamples.TEMPLATE_TYPE);
         String invoiceHtml = engine.renderInvoice("Invoice",
                 InvoiceExamples.getNotComputedNoVat());
         FileUtils.writeStringToFile(new File("target/notVat.html"), invoiceHtml, "UTF-8");
