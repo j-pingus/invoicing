@@ -1,6 +1,6 @@
-package lu.even.extractor;
+package lu.even.invoicing.extractor;
 
-import lu.even.domain.Invoice;
+import lu.even.invoicing.domain.Invoice;
 
 import java.io.InputStream;
 import java.util.List;

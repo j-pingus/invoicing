@@ -1,7 +1,7 @@
-package lu.even.compute;
+package lu.even.invoicing.compute;
 
-import lu.even.InvoiceExamples;
-import lu.even.domain.Invoice;
+import lu.even.invoicing.InvoiceExamples;
+import lu.even.invoicing.domain.Invoice;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

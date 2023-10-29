@@ -1,4 +1,4 @@
-package lu.even.pdf;
+package lu.even.invoicing.pdf;
 
 import org.apache.commons.io.FileUtils;
 import org.junit.jupiter.api.Test;

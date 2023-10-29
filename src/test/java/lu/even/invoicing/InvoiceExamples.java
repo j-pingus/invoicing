@@ -1,7 +1,7 @@
-package lu.even;
+package lu.even.invoicing;
 
-import lu.even.domain.Invoice;
-import lu.even.domain.InvoiceLine;
+import lu.even.invoicing.domain.Invoice;
+import lu.even.invoicing.domain.InvoiceLine;
 
 import java.math.BigDecimal;
 import java.io.File;

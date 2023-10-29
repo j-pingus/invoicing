@@ -1,6 +1,6 @@
-package lu.even.template;
+package lu.even.invoicing.template;
 
-import lu.even.InvoiceExamples;
+import lu.even.invoicing.InvoiceExamples;
 import org.apache.commons.io.FileUtils;
 import org.junit.jupiter.api.Test;
 
@@ -8,7 +8,7 @@ import java.io.File;
 import java.io.IOException;
 
 class HtmlTemplateEngineTest {
-    OneTemplateEngine invoiceTemplateEngine = new OneTemplateEngine(InvoiceExamples.TEMPLATE_FOLDER, "Invoice");
+    InvoiceTemplateEngine invoiceTemplateEngine = new InvoiceTemplateEngine(InvoiceExamples.TEMPLATE_FOLDER);
 
     @Test
     void renderInvoice() throws IOException {

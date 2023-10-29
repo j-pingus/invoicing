@@ -1,4 +1,4 @@
-package lu.even.domain;
+package lu.even.invoicing.domain;
 
 import lombok.Data;
 

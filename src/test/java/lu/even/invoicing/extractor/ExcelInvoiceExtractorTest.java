@@ -1,13 +1,11 @@
-package lu.even.extractor;
+package lu.even.invoicing.extractor;
 
-import lu.even.domain.Invoice;
+import lu.even.invoicing.domain.Invoice;
 import org.junit.jupiter.api.Test;
 
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class ExcelInvoiceExtractorTest {
     @Test

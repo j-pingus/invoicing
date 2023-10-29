@@ -1,4 +1,4 @@
-package lu.even.template;
+package lu.even.invoicing.template;
 
 import lombok.extern.slf4j.Slf4j;
 import org.thymeleaf.TemplateEngine;

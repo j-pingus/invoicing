@@ -1,4 +1,4 @@
-package lu.even.pdf;
+package lu.even.invoicing.pdf;
 
 import org.xhtmlrenderer.layout.SharedContext;
 import org.xhtmlrenderer.pdf.ITextRenderer;

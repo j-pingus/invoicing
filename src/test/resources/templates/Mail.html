@@ -1,0 +1,118 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org" lang="fr"
+      th:attr="lang=${lang}">
+<head>
+    <meta charset="UTF-8"/>
+    <style>
+        .date {
+            text-align: right;
+            padding: 10px;
+        }
+
+        .number {
+            text-align: right;
+        }
+
+        .signature {
+            text-align: right;
+            padding: 10px;
+        }
+
+        td {
+            margin: 5px;
+            padding: 5px;
+            border-top: 1px solid lightgray;
+            border-bottom: 1px solid lightgray;
+        }
+
+        .invoice-table {
+            width: 95%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .summary-table {
+            width: 65%;
+            margin-left: auto;
+            margin-right: 20px;
+        }
+
+        .invoice-header {
+            background-color: aliceblue;
+        }
+
+        th {
+            margin: 5px;
+            padding: 15px;
+
+        }
+
+        tr:nth-child(odd).invoice-line {
+            background: lightgray
+        }
+
+        .facture-id {
+            text-align: center;
+            padding: 10px;
+            font-weight: bolder;
+            font-size: larger;
+        }
+
+        .total {
+            text-align: right;
+            padding: 10px;
+            font-weight: bolder;
+            font-size: larger;
+
+        }
+
+        .full-width {
+            width: 100%;
+        }
+    </style>
+    <title th:text="${invoice.number}">Invoice</title>
+</head>
+<body>
+<p th:if="${MailIntroP1}" th:utext="${MailIntroP1}">Introduction de la facture: aaaa</p>
+<p th:if="${MailIntroP2}" th:utext="${MailIntroP2}">Introduction de la facture: aaaa</p>
+<p th:if="${MailIntroP3}" th:utext="${MailIntroP3}">Introduction de la facture: aaaa</p>
+<p th:if="${MailIntroP4}" th:utext="${MailIntroP4}">Introduction de la facture: aaaa</p>
+<p th:if="${MailIntroP5}" th:utext="${MailIntroP5}">Introduction de la facture: aaaa</p>
+<p th:if="${MailIntroP6}" th:utext="${MailIntroP6}">Introduction de la facture: aaaa</p>
+<p th:if="${MailIntroP7}" th:utext="${MailIntroP7}">Introduction de la facture: aaaa</p>
+<p th:if="${MailIntroP8}" th:utext="${MailIntroP8}">Introduction de la facture: aaaa</p>
+<p th:if="${MailIntroP9}" th:utext="${MailIntroP9}">Introduction de la facture: aaaa</p>
+<p th:if="${MailIntroP10}" th:utext="${MailIntroP10}">Introduction de la facture: aaaa</p>
+<p class="facture-id">
+    <span th:text="${invoiceTitle}">facture N°:</span>
+    <span th:text="${invoice.number}">XXXXX/YYYY-2023</span>
+</p>
+<p th:if="${TotalIntroP1}" th:utext="${TotalIntroP1}">Texte avant le total à payer</p>
+<p th:if="${TotalIntroP2}" th:utext="${TotalIntroP2}"></p>
+<p th:if="${TotalIntroP3}" th:utext="${TotalIntroP3}"></p>
+<p th:if="${TotalIntroP4}" th:utext="${TotalIntroP4}"></p>
+<p th:if="${TotalIntroP5}" th:utext="${TotalIntroP5}"></p>
+<p th:if="${TotalIntroP6}" th:utext="${TotalIntroP6}"></p>
+<p th:if="${TotalIntroP7}" th:utext="${TotalIntroP7}"></p>
+<p th:if="${TotalIntroP8}" th:utext="${TotalIntroP8}"></p>
+<p th:if="${TotalIntroP9}" th:utext="${TotalIntroP9}"></p>
+<p th:if="${TotalIntroP10}" th:utext="${TotalIntroP10}"></p>
+<p class="total">
+    <span th:utext="${TotalIntroShort}">Total à payer:</span>
+    <span th:text="${invoice.total}">55</span>
+    <span th:utext="${currency}">&#160;€</span>
+</p>
+<p th:if="${MailConclusionP1}" th:utext="${MailConclusionP1}">Texte fin de facture</p>
+<p th:if="${MailConclusionP2}" th:utext="${MailConclusionP2}"></p>
+<p th:if="${MailConclusionP3}" th:utext="${MailConclusionP3}"></p>
+<p th:if="${MailConclusionP4}" th:utext="${MailConclusionP4}"></p>
+<p th:if="${MailConclusionP5}" th:utext="${MailConclusionP5}"></p>
+<p th:if="${MailConclusionP6}" th:utext="${MailConclusionP6}"></p>
+<p th:if="${MailConclusionP7}" th:utext="${MailConclusionP7}"></p>
+<p th:if="${MailConclusionP8}" th:utext="${MailConclusionP8}"></p>
+<p th:if="${MailConclusionP9}" th:utext="${MailConclusionP9}"></p>
+<p th:if="${MailConclusionP10}" th:utext="${MailConclusionP10}"></p>
+<p class="signature" th:if="${SignatureP1}" th:utext="${SignatureP1}">Signataire,</p>
+<p class="signature" th:if="${SignatureP2}" th:utext="${SignatureP2}">nom</p>
+</body>
+</html>

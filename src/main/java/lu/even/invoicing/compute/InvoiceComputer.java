@@ -1,6 +1,6 @@
-package lu.even.compute;
+package lu.even.invoicing.compute;
 
-import lu.even.domain.Invoice;
+import lu.even.invoicing.domain.Invoice;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;

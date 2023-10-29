@@ -1,0 +1,17 @@
+invoicing:
+  sender: ${CNW_MAIL}
+spring:
+  mail:
+    properties:
+      mail:
+        smtp:
+          ssl:
+            enable: true
+          starttls:
+            #set to true for secured smtp server
+            enable: false
+          auth: true
+    host: ${CNW_SMTP}
+    port: ${CNW_PORT}
+    username: ${CNW_MAIL}
+    password: ${CNW_PASSWORD}

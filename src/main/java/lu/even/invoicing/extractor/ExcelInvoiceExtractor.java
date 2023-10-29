@@ -1,9 +1,9 @@
-package lu.even.extractor;
+package lu.even.invoicing.extractor;
 
 import lombok.extern.slf4j.Slf4j;
-import lu.even.domain.Contact;
-import lu.even.domain.Invoice;
-import lu.even.domain.InvoiceLine;
+import lu.even.invoicing.domain.Contact;
+import lu.even.invoicing.domain.Invoice;
+import lu.even.invoicing.domain.InvoiceLine;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 

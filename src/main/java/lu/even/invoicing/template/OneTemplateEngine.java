@@ -1,7 +1,7 @@
-package lu.even.template;
+package lu.even.invoicing.template;
 
 import lombok.extern.slf4j.Slf4j;
-import lu.even.domain.Invoice;
+import lu.even.invoicing.domain.Invoice;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -34,14 +34,13 @@ public class OneTemplateEngine extends HtmlTemplateEngine {
             }
         }
     }
-
-    public String renderInvoice(Invoice invoice) {
+    public String render(String name, Object object){
         Map<String, Object> variables = new HashMap<>();
         if (invoiceProperties != null)
             invoiceProperties.stringPropertyNames().forEach(key -> variables.put(key, invoiceProperties.getProperty(key)));
         if (dateFormat != null)
             variables.put("date", dateFormat.format(new Date()));
-        variables.put("invoice", invoice);
+        variables.put(name,object);
         return render(templateName, variables);
     }
 
