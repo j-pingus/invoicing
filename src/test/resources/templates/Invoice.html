@@ -4,6 +4,11 @@
 <head>
     <meta charset="UTF-8"/>
     <style>
+        @page {
+            size: A4;
+            margin: 0.30in;
+        }
+
         .date {
             text-align: right;
             padding: 10px;
@@ -21,8 +26,8 @@
         td {
             margin: 5px;
             padding: 5px;
-            border-top: 1px solid lightgray;
-            border-bottom: 1px solid lightgray;
+            border-top: 1px solid #d3d3d3;
+            border-bottom: 1px solid #d3d3d3;
         }
 
         .invoice-table {
@@ -47,8 +52,8 @@
 
         }
 
-        tr:nth-child(odd).invoice-line {
-            background: lightgray
+        .invoice-line-gray {
+            background: #d3d3d3;
         }
 
         .facture-id {
@@ -118,7 +123,7 @@
         <th th:utext="${invoiceDetailHeaderTotal}">Total</th>
         <th th:utext="${invoiceDetailHeaderTotalInclVAT}" th:if="${invoice.hasSummary}">TTC</th>
     </tr>
-    <tr class="invoice-line" th:each="line:${invoice.lines}">
+    <tr th:each="line,iterStat:${invoice.lines}" th:class="${iterStat.odd}? 'invoice-line-gray' ">
         <td th:text="${line.description}">description</td>
         <td class="number" th:text="${line.quantity}">2</td>
         <td class="number">
