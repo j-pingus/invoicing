@@ -18,6 +18,10 @@
             text-align: right;
         }
 
+        .percent {
+            text-align: center;
+        }
+
         .signature {
             text-align: right;
             padding: 10px;
@@ -26,8 +30,8 @@
         td {
             margin: 5px;
             padding: 5px;
-            border-top: 1px solid #d3d3d3;
-            border-bottom: 1px solid #d3d3d3;
+            border-top: 1px dotted #dadada;
+            border-bottom: 1px dotted #dadada;
         }
 
         .invoice-table {
@@ -42,19 +46,20 @@
             margin-right: 20px;
         }
 
-        .invoice-header {
-            background-color: aliceblue;
+        .table-header {
+            background-color: #e4f7ff;
+        }
+
+        tr:nth-child(odd).table-line {
+            background: #dadada;
         }
 
         th {
-            margin: 5px;
-            padding: 15px;
+            margin: 8px;
+            padding: 8px;
 
         }
 
-        .invoice-line-gray {
-            background: #d3d3d3;
-        }
 
         .facture-id {
             text-align: center;
@@ -115,22 +120,22 @@
 <p th:if="${InvoiceIntroP9}" th:utext="${InvoiceIntroP9}">Introduction de la facture: aaaa</p>
 <p th:if="${InvoiceIntroP10}" th:utext="${InvoiceIntroP10}">Introduction de la facture: aaaa</p>
 <table class="invoice-table">
-    <tr class="invoice-header">
+    <tr class="table-header">
         <th th:utext="${invoiceDetailHeaderDescription}">description</th>
-        <th th:utext="${invoiceDetailHeaderQuantity}">Quantité</th>
-        <th th:utext="${invoiceDetailHeaderUnitPrice}">Prix Unitaire</th>
-        <th th:utext="${invoiceDetailHeaderVAT}" th:if="${invoice.hasSummary}">taux de TVA</th>
-        <th th:utext="${invoiceDetailHeaderTotal}">Total</th>
-        <th th:utext="${invoiceDetailHeaderTotalInclVAT}" th:if="${invoice.hasSummary}">TTC</th>
+        <th class="number" th:utext="${invoiceDetailHeaderQuantity}">Quantité</th>
+        <th class="number" th:utext="${invoiceDetailHeaderUnitPrice}">Prix Unitaire</th>
+        <th class="percent" th:utext="${invoiceDetailHeaderVAT}" th:if="${invoice.hasSummary}">taux de TVA</th>
+        <th class="number" th:utext="${invoiceDetailHeaderTotal}">Total</th>
+        <th class="number" th:utext="${invoiceDetailHeaderTotalInclVAT}" th:if="${invoice.hasSummary}">TTC</th>
     </tr>
-    <tr th:each="line,iterStat:${invoice.lines}" th:class="${iterStat.odd}? 'invoice-line-gray' ">
+    <tr class="table-line" th:each="line:${invoice.lines}">
         <td th:text="${line.description}">description</td>
         <td class="number" th:text="${line.quantity}">2</td>
         <td class="number">
             <span th:text="${line.unitPrice}">25</span>
             <span th:utext="${currency}">&#160;€</span>
         </td>
-        <td class="number" th:if="${invoice.hasSummary}">
+        <td class="percent" th:if="${invoice.hasSummary}">
             <span th:text="${line.vat}">10</span>
             <span th:utext="${percent}">&#160;%</span>
         </td>
@@ -156,13 +161,13 @@
     <p th:if="${VatSummaryIntroP9}" th:utext="${VatSummaryIntroP9}"></p>
     <p th:if="${VatSummaryIntroP10}" th:utext="${VatSummaryIntroP10}"></p>
     <table class="summary-table">
-        <tr>
-            <th th:utext="${VATHeaderRate}">Taux</th>
-            <th th:utext="${VATHeaderTotal}">Total</th>
-            <th th:utext="${VATHeaderVAT}">TVA</th>
+        <tr class="table-header">
+            <th class="percent" th:utext="${VATHeaderRate}">Taux</th>
+            <th class="number" th:utext="${VATHeaderTotal}">Total</th>
+            <th class="number" th:utext="${VATHeaderVAT}">TVA</th>
         </tr>
-        <tr th:each="summary:${invoice.summary}">
-            <td>
+        <tr class="table-line" th:each="summary:${invoice.summary}">
+            <td class="percent">
                 <span th:text="${summary.vat}">10</span>
                 <span th:utext="${percent}">&#160;%</span>
             </td>
