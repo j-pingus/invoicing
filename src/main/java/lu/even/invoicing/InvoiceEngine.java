@@ -97,7 +97,7 @@ public class InvoiceEngine {
                 String html = FileUtils.readFileToString(mail, CHARSET);
                 MimeMessage message = this.mailSender.createMimeMessage();
                 MimeMessageHelper helper = new MimeMessageHelper(message, true);
-                helper.setFrom("<" + invoiceConfiguration.getSender().getName() + ">" + invoiceConfiguration.getSender().getEmail());
+                helper.setFrom("<" + invoiceConfiguration.getSender().getEmail() + ">" + invoiceConfiguration.getSender().getName());
                 helper.setTo(invoice.getRecipient().getEmail());
                 helper.setSubject(invoiceConfiguration.getSender().getName() + ":" + invoiceConfiguration.getMailSubject() + invoice.getNumber());
                 helper.setText(html, true);

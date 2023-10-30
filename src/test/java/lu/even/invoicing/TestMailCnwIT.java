@@ -3,6 +3,7 @@ package lu.even.invoicing;
 import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
 import org.apache.commons.io.FileUtils;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -14,7 +15,8 @@ import java.io.File;
 import java.io.IOException;
 
 @SpringBootTest
-@ActiveProfiles("cnw")
+@Disabled("Only useful for testing configuration")
+@ActiveProfiles("cnw,test")
 public class TestMailCnwIT {
     @Autowired
     JavaMailSender mailSender;
