@@ -1,0 +1,20 @@
+invoicing:
+  mailSubject: "votre facture :"
+  sender:
+    name: dummy
+    email: dummy@test.com
+spring:
+  mail:
+    properties:
+      mail:
+        smtp:
+          ssl:
+            enable: true
+          starttls:
+            #set to true for secured smtp server
+            enable: false
+          auth: true
+    host: ## please provide ##
+    port: ## please provide ##
+    username: ## please provide ##
+    password: ## please provide ##
