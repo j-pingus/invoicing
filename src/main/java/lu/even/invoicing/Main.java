@@ -37,13 +37,17 @@ public class Main implements CommandLineRunner {
             parser.printUsage(System.err);
         }
         if (arguments.prepare) {
+            logger.info("Preparing invoices");
             invoiceEngine.init(arguments.templates);
 
             Collection<Invoice> invoices = invoiceEngine.prepare(arguments.excel, arguments.invoices);
             if (arguments.send) {
                 invoiceEngine.send(invoices, arguments.invoices);
+            }else{
+                logger.info("Not sending invoices (-send)");
             }
         } else if (arguments.send) {
+            logger.info("Not preparing invoices (-prepare)");
             invoiceEngine.send(arguments.excel, arguments.invoices);
         }
 

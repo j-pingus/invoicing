@@ -72,6 +72,7 @@ public class InvoiceEngine {
             String mail = mailTemplateEngine.renderInvoice(invoice);
             FileUtils.writeStringToFile(mailFile, mail, CHARSET);
             FileUtils.writeByteArrayToFile(pdf, PdfProducer.htmlToPdf(html, templateFolder.toURI().toURL()));
+            logger.info("invoice prepared : '{}'", pdf);
         }
         return extracted;
     }
