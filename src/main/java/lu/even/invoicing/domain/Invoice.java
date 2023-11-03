@@ -1,5 +1,6 @@
 package lu.even.invoicing.domain;
 
+import com.crabshue.commons.aggregator.Execute;
 import lombok.Data;
 
 import java.math.BigDecimal;
@@ -12,6 +13,7 @@ public class Invoice {
     String number;
     Contact recipient;
     List<InvoiceLine> lines;
+    @Execute("sum('invoice.total')")
     BigDecimal total;
     List<VatSummary> summary;
 

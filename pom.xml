@@ -73,6 +73,11 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>com.github.crabs-hue.commons</groupId>
+            <artifactId>commons-aggregator</artifactId>
+            <version>0.13.0</version>
+        </dependency>
     </dependencies>
     <build>
         <plugins>
