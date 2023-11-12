@@ -8,7 +8,7 @@ import java.io.File;
 import java.io.IOException;
 
 class HtmlTemplateEngineTest {
-    InvoiceTemplateEngine invoiceTemplateEngine = new InvoiceTemplateEngine(InvoiceExamples.TEMPLATE_FOLDER);
+    InvoiceTemplateEngine invoiceTemplateEngine = new InvoiceTemplateEngine(InvoiceExamples.TEMPLATE_FOLDER,"fr","dd/MM/yyyy");
 
     @Test
     void renderInvoice() throws IOException {

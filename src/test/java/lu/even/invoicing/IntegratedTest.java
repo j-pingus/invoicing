@@ -23,8 +23,8 @@ public class IntegratedTest {
     public void integratedTest() throws IOException, ExtractionException {
         File baseTemplate = new File("src/test/resources/templates/");
         ExcelInvoiceExtractor extractor = new ExcelInvoiceExtractor();
-        InvoiceTemplateEngine templateEngine = new InvoiceTemplateEngine(InvoiceExamples.TEMPLATE_FOLDER);
-        MailTemplateEngine templateEngine2 = new MailTemplateEngine(InvoiceExamples.TEMPLATE_FOLDER);
+        InvoiceTemplateEngine templateEngine = new InvoiceTemplateEngine(InvoiceExamples.TEMPLATE_FOLDER,"fr","dd/MM/yyyy");
+        MailTemplateEngine templateEngine2 = new MailTemplateEngine(InvoiceExamples.TEMPLATE_FOLDER,"fr","dd/MM/yyyy");
         try (FileInputStream excel = new FileInputStream("src/test/resources/excel/Exemple.xlsx")) {
             List<Invoice> extracted = extractor.extractInvoices(excel);
             extracted.forEach(InvoiceComputer::compute);

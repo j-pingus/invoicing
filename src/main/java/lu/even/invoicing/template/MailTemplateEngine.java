@@ -4,12 +4,13 @@ import lu.even.invoicing.domain.Invoice;
 
 import java.io.File;
 
-public class MailTemplateEngine extends OneTemplateEngine{
+public class MailTemplateEngine extends OneTemplateEngine {
 
-    public MailTemplateEngine(File templateFolder) {
-        super(templateFolder, "Mail");
+    public MailTemplateEngine(File templateFolder, String lang, String dateFormat) {
+        super(templateFolder, "Mail", lang, dateFormat);
     }
-    public String renderInvoice(Invoice invoice){
-        return super.render("invoice",invoice);
+
+    public String renderInvoice(Invoice invoice) {
+        return super.render("invoice", invoice);
     }
 }

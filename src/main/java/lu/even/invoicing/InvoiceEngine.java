@@ -47,8 +47,8 @@ public class InvoiceEngine {
             throw new Error("Template folder does not exist:"+templateFolder);
         }
         this.templateFolder = templateFolder;
-        this.invoiceTemplateEngine = new InvoiceTemplateEngine(templateFolder);
-        this.mailTemplateEngine = new MailTemplateEngine(templateFolder);
+        this.invoiceTemplateEngine = new InvoiceTemplateEngine(templateFolder,this.invoiceConfiguration.getLang(),this.invoiceConfiguration.getDateFormat());
+        this.mailTemplateEngine = new MailTemplateEngine(templateFolder,this.invoiceConfiguration.getLang(),this.invoiceConfiguration.getDateFormat());
     }
 
     private Collection<Invoice> getInvoices(File excelFile) throws IOException, ExtractionException {

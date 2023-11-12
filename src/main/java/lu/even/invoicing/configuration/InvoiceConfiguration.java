@@ -12,4 +12,6 @@ public class InvoiceConfiguration {
     String mailSubject;
     @NestedConfigurationProperty
     Sender sender;
+    String lang;
+    String dateFormat;
 }

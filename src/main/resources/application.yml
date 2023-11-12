@@ -3,6 +3,9 @@ invoicing:
   sender:
     name: dummy
     email: dummy@test.com
+  lang: fr
+  #lang: lb-LU
+  date-format: dd MMM yyyy
 spring:
   mail:
     properties:
