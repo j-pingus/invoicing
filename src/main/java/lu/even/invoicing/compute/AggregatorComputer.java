@@ -7,6 +7,7 @@ import lu.even.invoicing.domain.Invoice;
 import lu.even.invoicing.domain.VatSummary;
 
 import java.math.BigDecimal;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -37,7 +38,9 @@ public class AggregatorComputer implements AggregatorProcessing {
                     vats.stream()
                             .map(vat -> new VatSummary().setVat(vat))
                             .map(context::process)
-                            .collect(Collectors.toList()));
+                            .collect(Collectors.toList())
+            );
+            ((Invoice)o).getSummary().sort(Comparator.comparing(VatSummary::getVat));
         }
     }
 }

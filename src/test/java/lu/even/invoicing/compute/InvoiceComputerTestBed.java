@@ -20,6 +20,9 @@ class InvoiceComputerTestBed {
         assertThat(BigDecimal.valueOf(0.20), Matchers.comparesEqualTo(summary.getVatAmount()));
         assertThat(BigDecimal.valueOf(20), Matchers.comparesEqualTo(summary.getAmount()));
         assertThat(BigDecimal.valueOf(38.36), Matchers.comparesEqualTo(invoice.getTotal()));
+        assertThat(invoice.getSummary().get(0).getVat(), Matchers.comparesEqualTo(BigDecimal.ONE));
+        assertThat(invoice.getSummary().get(1).getVat(), Matchers.comparesEqualTo(BigDecimal.valueOf(2)));
+
     }
 
     public void assertNotComputedNoVat(Invoice invoice) {

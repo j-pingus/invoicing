@@ -1,9 +1,11 @@
 package lu.even.invoicing.compute;
 
 import lu.even.invoicing.domain.Invoice;
+import lu.even.invoicing.domain.VatSummary;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.util.Comparator;
 
 public class InvoiceComputer {
     public static Invoice compute(Invoice invoice) {
@@ -38,6 +40,7 @@ public class InvoiceComputer {
                 invoice.addTotal(invoiceLine.getTotalInclVat());
             }
         });
+        invoice.getSummary().sort(Comparator.comparing(VatSummary::getVat));
         return invoice;
     }
 
