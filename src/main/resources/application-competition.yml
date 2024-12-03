@@ -1,0 +1,15 @@
+spring:
+  mail:
+    properties:
+      mail:
+        smtp:
+          ssl:
+            enable: true
+          starttls:
+            #set to true for secured smtp server
+            enable: false
+          auth: true
+    host: mail.cnw.lu
+    port: 465
+    username: competition@cnw.lu
+    password: Selection4#Emerald#Citrus

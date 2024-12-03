@@ -12,6 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
+import org.springframework.context.annotation.Conditional;
 import org.springframework.context.annotation.Profile;
 
 import java.io.File;
@@ -21,6 +23,7 @@ import java.util.List;
 
 @SpringBootApplication
 @Profile("!test")
+@ConditionalOnProperty(value = "invoicing", havingValue = "true")
 @Slf4j
 public class Main implements CommandLineRunner {
     public static void main(String[] args) {
